@@ -1,0 +1,2 @@
+// Modules fs
+ข้อความจากไฟล์  input.txt
