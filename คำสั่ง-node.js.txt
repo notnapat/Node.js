@@ -5,6 +5,16 @@ npm init -y = ประกาศสร้างแอพไม่กรอกร
 name ใส่พิมพ์เล็กทั้งหมด 
 main ใส่ชื่อไฟล์หลักที่ใช้รัน
 author ใส่ชือผู้พัฒนา
+
 	รีเฟสหน้าเว็บ เพื่อเปลี่ยนการแสดงผลเนื้อหาในหน้าเว็บ หรือ อัพเดทหน้าเว็บ
 node ชื่อไฟล์ที่จะรัน =  เริ่มการทำ งานใหม่ของ Server ถ้า Server ทำงานอยู่จะไม่สามารถพิมพ์คำสั่ง หรือ ป้อนคำสั่งใหม่ใน command ได้
 CTRL + C = หยุดการทำ งานของ Server
+
+	รันแอพด้วย nodemon
+npm install nodemon = ติดตั้งตัวรันโค้ดnode
+npx nodemon Index.js = คำ สั่งรันโค้ดขึ้นหน้าเว็บอัตโนมัติ	
+	ตั้งให้ run code ให้พิมพ์แค่ npm start
+เปิดไฟล์ package.json 
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    !!!!!! พิมพ์ code นี้เพิ่มลงไป "start":"nodemon ./bin/www" !!!!!!

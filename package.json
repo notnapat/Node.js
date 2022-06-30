@@ -4,7 +4,8 @@
   "description": "node.js for basic",
   "main": "Index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/notnapat/Node.js-Basic/issues"
   },
-  "homepage": "https://github.com/notnapat/Node.js-Basic#readme"
+  "homepage": "https://github.com/notnapat/Node.js-Basic#readme",
+  "dependencies": {
+    "nodemon": "^2.0.18"
+  }
 }
