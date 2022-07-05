@@ -18,6 +18,7 @@ console.log("start server in port 8000")
       
 //       res.write(myhtml)
 //       res.end() 
+//      หรือ  res..end(myhtml)
 // })
 // server.listen(3000,"localhost",()=>{
 // console.log("start server in port 3000")
