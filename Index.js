@@ -1,28 +1,69 @@
-//  สร้าง  Web Server ด้วย Node.js (จำลอง Server)
+// Routing  = url  "ตั้งค่า เพื่มหน้า/ เปลื่ยน  ตอบกลับว่าอยู่หน้าไหน " 
 const http = require('http')
 
-http.createServer((req,res)=>{
-      res.write("<h1>111NNNNN4444 </h1>")
-      res.end() 
-}).listen(8000,()=>{
-      //ให้แสดงเมื่อรัน Server
-console.log("start server in port 8000")
+const server = http.createServer((req,res)=>{
+      const pathName = req.url
+      console.log("url = ",pathName)
+              
+      if(pathName=="/" || pathName=="/home"){
+       const myhtml = `
+      <body style=" background-color: black ; 
+      color:green"
+      >
+      <h1>aaaaa</h1>
+      <p>33333bbbbb</p> 
+      </body>`
+            res.end(myhtml)
+      }else if(pathName=="/product"){
+            res.end("<h1> Hello Peoduct</h1>")
+      }else{
+            res.writeHead(404)
+            res.end("<h1> Not Found</h1>")
+      }
+   
+
+})
+server.listen(3000,"localhost",()=>{
+console.log("start server in port 3000")
 })
 
+//_________________________________________________________________________________________________________________________________________________
+
+//  สร้าง  Web Server ด้วย Node.js (จำลอง Server)
+
+//  1.
 // const http = require('http')
 
 // const server = http.createServer(function(req,res){
+
 //       const myhtml = `
+//       <body style=" background-color: black ; 
+//       color:green"
+//       >
 //       <h1>aaaaa</h1>
-//       <p>bbbbb</p>`
-      
-//       res.write(myhtml)
-//       res.end() 
-//      หรือ  res..end(myhtml)
+//       <p>33333bbbbb</p> 
+//       </body>`
+     
+// //    res.write(myhtml)
+// //       res.end() 
+//      res.end(myhtml)
 // })
 // server.listen(3000,"localhost",()=>{
 // console.log("start server in port 3000")
 // })
+
+// 2.
+// const http = require('http')
+
+// http.createServer((req,res)=>{
+//       res.write("<h1>111NNNNN44445555 </h1>")
+//       res.end() 
+// }).listen(8000,()=>{
+//       //ให้แสดงเมื่อรัน Server
+// console.log("start server in port 8000")
+// })
+
+
 
 //____________________________________________________________________________________________________________
 

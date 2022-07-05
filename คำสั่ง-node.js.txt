@@ -12,7 +12,7 @@ CTRL + C = หยุดการทำ งานของ Server
 
 	รันแอพด้วย nodemon
 npm install nodemon = ติดตั้งตัวรันโค้ดnode
-npx nodemon Index.js = คำ สั่งรันโค้ดขึ้นหน้าเว็บอัตโนมัติ	
+npx nodemon ชื่อไฟล์พร้อมนามสกุล = คำ สั่งรันโค้ดขึ้นหน้าเว็บอัตโนมัติ	
 	ตั้งให้ run code ให้พิมพ์แค่ npm start
 เปิดไฟล์ package.json 
   "scripts": {
