@@ -1,40 +1,67 @@
-// โมดูล url เชื่อม HTML Template   index.js > product1.html > product2.html > product3.html
-const http = require('http') // โมดูลเรียกใช้หน้าเว็บ
-const fs = require('fs') //โมดูลเรียกใช้ไฟล์ 
-const url = require('url') //โมดูล url 
+const express = require('express') // เรียกใช้ express  ต้องติดตั้งก่อน npm install express
+const app = express() // ใช้  express ผ่านตัวแปร app
+const path = require('path') // เรียกใช้ โมดูลพาท
 
-const indexPage = fs.readFileSync(`${__dirname}/templates/index.html`,'utf-8')
-const productPage1= fs.readFileSync(`${__dirname}/templates/product1.html`,'utf-8')
-const productPage2= fs.readFileSync(`${__dirname}/templates/product2.html`,'utf-8')
-const productPage3= fs.readFileSync(`${__dirname}/templates/product3.html`,'utf-8')
+// app.use((req,res)=>{  // .use ใช้แค่หน้าเดียว
+//       res.send("<h1>Hello Express.js</h1>")  // .send ใช้ส่งข้อความ
+// })
 
-const server = http.createServer((req,res)=>{
+// ตำแหน่งไฟล์
+// const indexPage = path.join(__dirname,"templates/index.html")
+
+app.get("/",(req,res)=>{ // .get ใช้รับข้อมูล หลายพาท
+      res.status(200)  // แจ้ง status code
+      res.type('text/html') //กำหนดรูปแบบเนื้อหา
+      res.sendFile(path.join(__dirname,"templates/index.html"))
+})
+
+app.get("/product",(req,res)=>{
+      res.sendFile(path.join(__dirname,"templates/product1.html"))
+})
+
+app.listen(8000,()=>{
+      console.log("รัน server ที่ port 8000")
+})
+
+//____________________________________________________________________________________________________________________________________________________
+
+// // โมดูล urlเชื่อม HTML Template   index.js > product1.html > product2.html > product3.html
+// const http = require('http') // โมดูลเรียกใช้หน้าเว็บ
+// const fs = require('fs') //โมดูลเรียกใช้ไฟล์ 
+// const url = require('url') //โมดูล url 
+
+// const indexPage = fs.readFileSync(`${__dirname}/templates/index.html`,'utf-8')
+// const productPage1= fs.readFileSync(`${__dirname}/templates/product1.html`,'utf-8')
+// const productPage2= fs.readFileSync(`${__dirname}/templates/product2.html`,'utf-8')
+// const productPage3= fs.readFileSync(`${__dirname}/templates/product3.html`,'utf-8')
+
+// const server = http.createServer((req,res)=>{
       
-      const {pathname,query} = url.parse(req.url,true)      
+//       const {pathname,query} = url.parse(req.url,true)      
      
-      if(pathname=="/" || pathname=="/home"){
-             res.end(indexPage)
-      }else if(pathname=="/product"){
-            if(query.id == "1"){
-                  res.end(productPage1)
-            }else if (query.id == "2"){
-                  res.end(productPage2)
-            }else if (query.id == "3"){
-                  res.end(productPage3)
-            }else {
-                  res.writeHead(404)
-                  res.end("<h1>Not Found</h1>")
-            }
-      }else{
-            res.writeHead(404)
-            res.end("<h1> Not Found</h1>")
-      }
+//       if(pathname=="/" || pathname=="/home"){
+//              res.end(indexPage)
+//       }else if(pathname=="/product"){
+//             if(query.id == "1"){
+//                   res.end(productPage1)
+//             }else if (query.id == "2"){
+//                   res.end(productPage2)
+//             }else if (query.id == "3"){
+//                   res.end(productPage3)
+//             }else {
+//                   res.writeHead(404)
+//                   res.end("<h1>Not Found</h1>")
+//             }
+//       }else{
+//             res.writeHead(404)
+//             res.end("<h1> Not Found</h1>")
+//       }
    
 
-})
-server.listen(3000,"localhost",()=>{
-console.log("start server in port 3000")
-})
+// })
+// server.listen(3000,"localhost",()=>{
+// console.log("start server in port 3000")
+// })
 
 //____________________________________________________________
 

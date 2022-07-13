@@ -29,8 +29,10 @@ HTTP Status Code
 Server)
     
     ตัวแปร พาทไฟล์
-(`$__dirname`) หรือ (__dirname) = ตัวแปรของพาดไฟล์ที่กำ ลังเขียนอยู่
+(`$__dirname`) หรือ (__dirname) = ตัวแปรของพาทไฟล์ที่กำ ลังเขียนอยู่
     
+    Express.js
+npm install express = ติดตั้ง express
     
     
     
