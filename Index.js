@@ -1,25 +1,30 @@
-// 
-const http = require('http') //เรียกใช้หน้าเว็บ
-const fs = require('fs') //เรียกใช้ไฟล์ 
+// โมดูล url เชื่อม HTML Template   index.js > product1.html > product2.html > product3.html
+const http = require('http') // โมดูลเรียกใช้หน้าเว็บ
+const fs = require('fs') //โมดูลเรียกใช้ไฟล์ 
+const url = require('url') //โมดูล url 
 
-// fs.readFileSync(__dirname)
+const indexPage = fs.readFileSync(`${__dirname}/templates/index.html`,'utf-8')
+const productPage1= fs.readFileSync(`${__dirname}/templates/product1.html`,'utf-8')
+const productPage2= fs.readFileSync(`${__dirname}/templates/product2.html`,'utf-8')
+const productPage3= fs.readFileSync(`${__dirname}/templates/product3.html`,'utf-8')
 
 const server = http.createServer((req,res)=>{
-      const pathName = req.url
-      console.log("url = ",pathName)
-      console.log("dir = ",__dirname)
-              
-      if(pathName=="/" || pathName=="/home"){
-       const myhtml = `
-      <body style=" background-color: black ; 
-      color:green"
-      >
-      <h1>aaaaa</h1>
-      <p>33333bbbbb</p> 
-      </body>`
-            res.end(myhtml)
-      }else if(pathName=="/product"){
-            res.end("<h1> Hello Peoduct</h1>")
+      
+      const {pathname,query} = url.parse(req.url,true)      
+     
+      if(pathname=="/" || pathname=="/home"){
+             res.end(indexPage)
+      }else if(pathname=="/product"){
+            if(query.id == "1"){
+                  res.end(productPage1)
+            }else if (query.id == "2"){
+                  res.end(productPage2)
+            }else if (query.id == "3"){
+                  res.end(productPage3)
+            }else {
+                  res.writeHead(404)
+                  res.end("<h1>Not Found</h1>")
+            }
       }else{
             res.writeHead(404)
             res.end("<h1> Not Found</h1>")
@@ -30,6 +35,34 @@ const server = http.createServer((req,res)=>{
 server.listen(3000,"localhost",()=>{
 console.log("start server in port 3000")
 })
+
+//____________________________________________________________
+
+// // โมดูล url เชื่อมไฟล์เขียนเอง หน้าเว็บผ่านกดลิงก์ Index.js > index.html > product.html
+// const http = require('http') //เรียกใช้หน้าเว็บ
+// const fs = require('fs') //เรียกใช้ไฟล์ 
+
+// const indexPage = fs.readFileSync(`${__dirname}/webpages/index.html`)
+// const productPage = fs.readFileSync(`${__dirname}/webpages/product.html`)
+// const server = http.createServer((req,res)=>{
+
+//       const pathName = req.url
+//       console.log("url = ",pathName)
+              
+//       if(pathName=="/" || pathName=="/home"){
+//             res.end(indexPage)
+//       }else if(pathName=="/product"){
+//             res.end(productPage)
+//       }else{
+//             res.writeHead(404)
+//             res.end("<h1> Not Found</h1>")
+//       }
+   
+
+// })
+// server.listen(3000,"localhost",()=>{
+// console.log("start server in port 3000")
+// })
 
 //_______________________________________________________________________________________________________________
 
