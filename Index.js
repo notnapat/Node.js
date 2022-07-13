@@ -1,9 +1,13 @@
-// Routing  = url  "ตั้งค่า เพื่มหน้า/ เปลื่ยน  ตอบกลับว่าอยู่หน้าไหน " 
-const http = require('http')
+// 
+const http = require('http') //เรียกใช้หน้าเว็บ
+const fs = require('fs') //เรียกใช้ไฟล์ 
+
+// fs.readFileSync(__dirname)
 
 const server = http.createServer((req,res)=>{
       const pathName = req.url
       console.log("url = ",pathName)
+      console.log("dir = ",__dirname)
               
       if(pathName=="/" || pathName=="/home"){
        const myhtml = `
@@ -26,6 +30,37 @@ const server = http.createServer((req,res)=>{
 server.listen(3000,"localhost",()=>{
 console.log("start server in port 3000")
 })
+
+//_______________________________________________________________________________________________________________
+
+// // Routing  = url  "ตั้งค่า เพื่มหน้า/ เปลื่ยน  ตอบกลับว่าอยู่หน้าไหน " 
+// const http = require('http')
+
+// const server = http.createServer((req,res)=>{
+//       const pathName = req.url
+//       console.log("url = ",pathName)
+              
+//       if(pathName=="/" || pathName=="/home"){
+//        const myhtml = `
+//       <body style=" background-color: black ; 
+//       color:green"
+//       >
+//       <h1>aaaaa</h1>
+//       <p>33333bbbbb</p> 
+//       </body>`
+//             res.end(myhtml)
+//       }else if(pathName=="/product"){
+//             res.end("<h1> Hello Peoduct</h1>")
+//       }else{
+//             res.writeHead(404)
+//             res.end("<h1> Not Found</h1>")
+//       }
+   
+
+// })
+// server.listen(3000,"localhost",()=>{
+// console.log("start server in port 3000")
+// })
 
 //_________________________________________________________________________________________________________________________________________________
 
