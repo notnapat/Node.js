@@ -1,27 +1,41 @@
-const express = require('express') // เรียกใช้ express  ต้องติดตั้งก่อน npm install express
+// +myrouter.js    router รับส่งข้อมูล > router paramiter ใช้ get ID >Redirect ใช้กลับหน้าแรก
+const express = require('express') // เรียกใช้ express แสดงไฟล์ไปยัง server ต้องติดตั้งก่อน npm install express
 const app = express() // ใช้  express ผ่านตัวแปร app
-const path = require('path') // เรียกใช้ โมดูลพาท
+const router = require('./routers/myrouter.js') // ดึงไฟล์ myrouter.js
 
-// app.use((req,res)=>{  // .use ใช้แค่หน้าเดียว
-//       res.send("<h1>Hello Express.js</h1>")  // .send ใช้ส่งข้อความ
-// })
-
-// ตำแหน่งไฟล์
-// const indexPage = path.join(__dirname,"templates/index.html")
-
-app.get("/",(req,res)=>{ // .get ใช้รับข้อมูล หลายพาท
-      res.status(200)  // แจ้ง status code
-      res.type('text/html') //กำหนดรูปแบบเนื้อหา
-      res.sendFile(path.join(__dirname,"templates/index.html"))
-})
-
-app.get("/product",(req,res)=>{
-      res.sendFile(path.join(__dirname,"templates/product1.html"))
-})
+app.use(router) // import จาก myrouter
 
 app.listen(8000,()=>{
       console.log("รัน server ที่ port 8000")
 })
+
+//__________________________________________________________________________________________________________________________________
+
+// express and โมดูลพาท ใช้ระบุพาท
+// const express = require('express') // เรียกใช้ express แสดงไฟล์ไปยัง server ต้องติดตั้งก่อน npm install express
+// const app = express() // ใช้  express ผ่านตัวแปร app
+// const path = require('path') // เรียกใช้ โมดูลพาท
+
+// // app.use((req,res)=>{  // .use ใช้แค่หน้าเดียว
+// //       res.send("<h1>Hello Express.js</h1>")  // .send ใช้ส่งข้อความ
+// // })
+
+// // ตำแหน่งไฟล์
+// // const indexPage = path.join(__dirname,"templates/index.html")
+
+// app.get("/",(req,res)=>{ // .get ใช้รับข้อมูล หลายพาท
+//       res.status(200)  // แจ้ง status code
+//       res.type('text/html') //กำหนดรูปแบบเนื้อหา
+//       res.sendFile(path.join(__dirname,"templates/index.html"))
+// })
+
+// app.get("/product",(req,res)=>{
+//       res.sendFile(path.join(__dirname,"templates/product1.html"))
+// })
+
+// app.listen(8000,()=>{
+//       console.log("รัน server ที่ port 8000")
+// })
 
 //____________________________________________________________________________________________________________________________________________________
 
