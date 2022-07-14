@@ -34,7 +34,8 @@ Server)
     Express.js
 npm install express = ติดตั้ง express
     
-    
+    EJS Template Engine
+npm install ejs = ติดตั้ง การใช้ ไฟล์ .ejs
     
     
     

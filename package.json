@@ -2,7 +2,7 @@
   "name": "nodejsbasic",
   "version": "1.0.0",
   "description": "node.js for basic",
-  "main": "Index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/notnapat/Node.js-Basic#readme",
   "dependencies": {
+    "ejs": "^3.1.8",
     "express": "^4.18.1",
     "nodemon": "^2.0.18"
   }
