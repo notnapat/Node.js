@@ -1,13 +1,25 @@
-// +myrouter.js    router รับส่งข้อมูล > router paramiter ใช้ get ID >Redirect ใช้กลับหน้าแรก
-const express = require('express') // เรียกใช้ express แสดงไฟล์ไปยัง server ต้องติดตั้งก่อน npm install express
-const app = express() // ใช้  express ผ่านตัวแปร app
-const router = require('./routers/myrouter.js') // ดึงไฟล์ myrouter.js
-
-app.use(router) // import จาก myrouter
+// Static file   .static + public file path ดึงข้อมูลมาแสดงอย่างง่าย
+const express = require('express')
+const path = require('path')
+const app = express()
+app.use(express.static(path.join(__dirname,'public')))
 
 app.listen(8000,()=>{
       console.log("รัน server ที่ port 8000")
 })
+
+//____________________________________________________________________________________________________________________________________________
+
+// // +myrouter.js    router รับส่งข้อมูล > router paramiter ใช้ get ID >Redirect ใช้กลับหน้าแรก
+// const express = require('express') // เรียกใช้ express แสดงไฟล์ไปยัง server ต้องติดตั้งก่อน npm install express
+// const app = express() // ใช้  express ผ่านตัวแปร app
+// const router = require('./routers/myrouter.js') // ดึงไฟล์ myrouter.js
+
+// app.use(router) // import จาก myrouter
+
+// app.listen(8000,()=>{
+//       console.log("รัน server ที่ port 8000")
+// })
 
 //__________________________________________________________________________________________________________________________________
 
