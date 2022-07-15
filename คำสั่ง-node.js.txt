@@ -36,6 +36,8 @@ npm install express = ติดตั้ง express
     
     EJS Template Engine
 npm install ejs = ติดตั้ง การใช้ ไฟล์ .ejs
+<%= name %> = <%= ชื่อตัวแปลที่จะนำ ไปแสดง %>
+<%- name %> = <%- ชื่อตัวแปลพร้อมแท็ก html %>
     
     
     

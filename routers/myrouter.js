@@ -1,10 +1,14 @@
-//
+// ส่งข้อมูลไปยัง EJS Template  <+>  index.ejs
 const express = require('express')
+const { render } = require('express/lib/response')
 const router = express.Router()
 
 // เรียกใช้ ejs template
 router.get('/',(req,res)=>{
-      res.render('index.ejs')
+      const name = "napat"
+      const age = 25
+      const address = "<h2>พิจิตร</h2>"
+      res.render('index',{name:name,age:age,address:address})
 })
 
 //________________________________________________________________________________________________________________________________________________
