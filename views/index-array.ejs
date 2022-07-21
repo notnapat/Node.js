@@ -11,21 +11,26 @@
       <!-- __________________________ ส่งข้อมูลแบบ Array ___________________________________ -->
 
       <h1>EJS Template Engine</h1>
+
+   <!-- ดึง array ทีละตัว  -->
       <p><%= products %></p>
       <p><%= products[0] %></p>
       <p><%= products[2] %></p>
       <p><%= products[1] %></p>
-
+    
+      <!-- ดึง array for loop -->
       <% for(i=0;i<products.length;i++){%>
             <p><%= products[i] %></p>
       <% } %>
 
+      <!-- ดึง array for loop มีตัวเลขตามลำดับ -->
       <ol>
             <% for(i=0;i<products.length;i++){%>
                    <li><%= products[i] %></li>
             <% } %>
       </ol>
 
+      <!-- ดึง array for loop สร้างตัวแปลแทน i -->
       <ol>
             <% for(index in products){%>
                    <li><%= products[index] %></li>

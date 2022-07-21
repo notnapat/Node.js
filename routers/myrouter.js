@@ -1,13 +1,30 @@
-// 
+// ส่งข้อมูลแบบ Array Object เอาข้อมูลจาก index.html มาแปลงลง index-obj.ejs แล้วส่งค่าไป loop ใน index-obj.ejs
 const express = require('express')
 const router = express.Router()
 
 // เรียกใช้ ejs template
 router.get('/',(req,res)=>{
-      const products = ["เสื้อ","พัดลม","หูฟัง","คีย์บอร์ด"]
-      res.render('index',{products:products})
+      const products = [
+            {name:"โน๊ตบุ๊ค",price:500,image:"images/products/product1.png"},
+            {name:"เสื้อ",price:200,image:"images/products/product2.png"},
+            {name:"หูฟัง",price:200,image:"images/products/product3.png"}
+      ]
+      res.render('index-obj',{products:products})
 
 })
+
+//____________________________________________________________________________________________________________________________________
+
+// // ส่งข้อมูลแบบ Array
+// const express = require('express')
+// const router = express.Router()
+
+// // เรียกใช้ ejs template
+// router.get('/',(req,res)=>{
+//       const products = ["เสื้อ","พัดลม","หูฟัง","คีย์บอร์ด"]
+//       res.render('index',{products:products})
+
+// })
 
 //__________________________________________________________________________________________________________________________________________________
 
