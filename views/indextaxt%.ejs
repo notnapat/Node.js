@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+</head>
+
+<body>
+
+      <h1>EJS Template Engine</h1>
+      <p><%= products %></p>
+
+      <!-- ______________________________________________________________________________________________________________ -->
+
+      <h1>EJS Template Engine</h1>
+      <p><b>ชื่อ:</b>  <%= name %> </p>
+      <p><b>อายุ:</b> <%= age %> </p>
+      <%- address %> 
+
+            <hr>
+<!-- ______________________________________________If/else/loop for_________________________________________________________________________ -->
+          
+          <!-- if/else   .ejs --> 
+            <% if (age>=18){ %>
+                  <h1>ผ่าน</h1> 
+            <%} else {%>
+                  <h1>ไม่ผ่าน</h1>
+            <% }  %> 
+
+            <hr>
+
+            <!-- loop for -->
+            <% for(i=1;i<=10;i++) {%>
+            <p>number <%= i %></p>
+            <% } %> 
+      
+</body>
+
+</html>

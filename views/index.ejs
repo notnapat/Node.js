@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
 </head>
-
 <body>
+      
+      <!-- __________________________ ส่งข้อมูลแบบ Array ___________________________________ -->
+
       <h1>EJS Template Engine</h1>
-      <p><b>ชื่อ:</b> <%= name %> </p>
-      <p><b>อายุ:</b> <%= age %> </p>
-      <%- address %>
+      <p><%= products %></p>
+      <p><%= products[0] %></p>
+      <p><%= products[2] %></p>
+      <p><%= products[1] %></p>
 
-            <hr>
-<!-- ______________________________________________If/else/loop for_________________________________________________________________________ -->
-            <!-- if/else   .ejs -->
-            <% if (age>=18){ %>
-                  <h1>ผ่าน</h1> 
-            <%} else {%>
-                  <h1>ไม่ผ่าน</h1>
-            <% }  %>
+      <% for(i=0;i<products.length;i++){%>
+            <p><%= products[i] %></p>
+      <% } %>
 
-            <hr>
-
-            <!-- loop for -->
-            <% for(i=1;i<=10;i++) {%>
-            <p>number <%= i %></p>
+      <ol>
+            <% for(i=0;i<products.length;i++){%>
+                   <li><%= products[i] %></li>
             <% } %>
+      </ol>
+
+      <ol>
+            <% for(index in products){%>
+                   <li><%= products[index] %></li>
+            <% } %>
+      </ol>
+      
       
 </body>
-
 </html>
