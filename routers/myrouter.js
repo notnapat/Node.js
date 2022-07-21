@@ -1,4 +1,5 @@
 // ส่งข้อมูลแบบ Array Object เอาข้อมูลจาก index.html มาแปลงลง index-obj.ejs แล้วส่งค่าไป loop ใน index-obj.ejs
+// <%- include('ขื่อไฟล์ ') %>  navbar
 const express = require('express')
 const router = express.Router()
 
@@ -10,6 +11,16 @@ router.get('/',(req,res)=>{
             {name:"หูฟัง",price:200,image:"images/products/product3.png"}
       ]
       res.render('index-obj',{products:products})
+
+})
+
+router.get('/addForm',(req,res)=>{
+      res.render('form')
+
+})
+
+router.get('/manage',(req,res)=>{
+      res.render('manage')
 
 })
 
