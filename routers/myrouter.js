@@ -14,6 +14,7 @@ router.get('/',(req,res)=>{
 
 })
 
+// แสดง url ตามพาท
 router.get('/addForm',(req,res)=>{
       res.render('form')
 
@@ -22,6 +23,18 @@ router.get('/addForm',(req,res)=>{
 router.get('/manage',(req,res)=>{
       res.render('manage')
 
+})
+
+//  form get
+router.get('/insert',(req,res)=>{      
+      console.log(req.query.name)  //  .query แสดงข้อมูลทั้งหมด   , .name แสดงแค่ชื่อ , .price แสดงแค่ราคา  ,  .description  
+      res.render('form')
+})
+
+//  form post
+router.post('/insert',(req,res)=>{
+      console.log(req.body)
+      res.render('form')
 })
 
 //____________________________________________________________________________________________________________________________________
