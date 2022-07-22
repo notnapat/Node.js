@@ -3,14 +3,17 @@
 const express = require('express')
 const router = express.Router()
 
+//เรียกใช้งานโมเดล Product บันทึกข้อมูลลง MongoDB
+const Product = require('../models/products.js')
+
 // เรียกใช้ ejs template
 router.get('/',(req,res)=>{
       const products = [
             {name:"โน๊ตบุ๊ค",price:500,image:"images/products/product1.png"},
             {name:"เสื้อ",price:200,image:"images/products/product2.png"},
             {name:"หูฟัง",price:200,image:"images/products/product3.png"}
-      ]
-      res.render('index-obj',{products:products})
+      ] 
+      res.render('index-obj.ejs',{products:products})
 
 })
 
@@ -25,16 +28,36 @@ router.get('/manage',(req,res)=>{
 
 })
 
+router.get('/product',(req,res)=>{
+      res.render('product')
+})
+
 //  form get
 router.get('/insert',(req,res)=>{      
       console.log(req.query.name)  //  .query แสดงข้อมูลทั้งหมด   , .name แสดงแค่ชื่อ , .price แสดงแค่ราคา  ,  .description  
       res.render('form')
 })
 
-//  form post
+//  form post  > รับข้อมูลจาก form 
 router.post('/insert',(req,res)=>{
-      console.log(req.body)
-      res.render('form')
+      // console.log(req.body.name)
+      // console.log(req.body.price)
+      // console.log(req.body.image)
+      // console.log(req.body.description)
+ 
+      // บันทึกข้อมูล ลง MongoDB
+      let data = new Product({
+            name:req.body.name,
+            price:req.body.price,
+            image:req.body.image,
+            description:req.body.description
+      })
+      Product.saveProduct(data,(err)=>{
+            if(err) console.log(err)  // ถ้า err ให้แสดง err
+            res.redirect('/')  // บันทึกเสร็จให้กลับไปหน้าแรก
+      })
+      // console.log(data)
+      // res.render('form')
 })
 
 //____________________________________________________________________________________________________________________________________

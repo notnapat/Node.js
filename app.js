@@ -11,10 +11,13 @@ const router = require('./routers/myrouter')
 app.set('views',path.join(__dirname,'views')) // views
 app.set('view engine' ,'ejs')
 
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false})) //หน้าจะทำให้อ่าน Object ได้ มั้ง
 
-app.use(express.static(path.join(__dirname,'public'))) // static
+
 app.use(router)// ดึงมาจาก ไฟล์ myrouter.js
+app.use(express.static(path.join(__dirname,'public'))) // static
+
+
 app.listen(8000,()=>{
       console.log("รัน server ที่ port 8000")
 })

@@ -39,6 +39,8 @@ npm install ejs = ติดตั้ง การใช้ ไฟล์ .ejs
 <%= name %> = <%= ชื่อตัวแปลที่จะนำ ไปแสดง %>
 <%- name %> = <%- ชื่อตัวแปลพร้อมแท็ก html %>
     
+    Mongoose เชื้อมต่อ MongoDB
+npm install mongoose = ติดตั่ง Mongoose ใน cmd vscode
     
     
     
