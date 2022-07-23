@@ -41,6 +41,10 @@ npm install ejs = ติดตั้ง การใช้ ไฟล์ .ejs
     
     Mongoose เชื้อมต่อ MongoDB
 npm install mongoose = ติดตั่ง Mongoose ใน cmd vscode
+
+	Multer ตัวอัพโหลดไฟล์ เช่น รูป วีดีโอ
+npm install multer = ติดตั้ง multer
+
     
     
     

@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const dbUrl = 'mongodb://localhost:27017/productDB'
 mongoose.connect(dbUrl,{
       useNewUrlParser:true,
-      // useUnifiedTopologe:true //ถ้าไม่คอมเม็นต์ก็รันไม่ได้ บอกไม่ซัพพอร์ต
+      useUnifiedTopology:true, //ถ้าไม่คอมเม็นต์ก็รันไม่ได้ บอกไม่ซัพพอร์ต
 }).catch(err=>console.log(err)) //แสดงเมื่อเออเรอร์
 
 // ออกแบบ Schema

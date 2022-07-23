@@ -6,6 +6,9 @@ const router = express.Router()
 //เรียกใช้งานโมเดล Product บันทึกข้อมูลลง MongoDB
 const Product = require('../models/products.js')
 
+
+
+
 // เรียกใช้ ejs template
 router.get('/',(req,res)=>{
       const products = [
@@ -32,29 +35,47 @@ router.get('/product',(req,res)=>{
       res.render('product')
 })
 
-//  form get
-router.get('/insert',(req,res)=>{      
-      console.log(req.query.name)  //  .query แสดงข้อมูลทั้งหมด   , .name แสดงแค่ชื่อ , .price แสดงแค่ราคา  ,  .description  
-      res.render('form')
+// //  form get
+// router.get('/insert',(req,res)=>{      
+//       console.log(req.query.name)  //  .query แสดงข้อมูลทั้งหมด   , .name แสดงแค่ชื่อ , .price แสดงแค่ราคา  ,  .description  
+//       res.render('form')
+// })
+
+// เรียกใช้ตัวอัพโหลดไฟล์  Multer  
+// อัพโหลดไฟล์ขึ้น Sever && MongoDB   >  myrouter.js + products.js
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+      destination:function(req,file,cb){
+            cb(null,'./public/images/products') // ตำแหน่งจัดเก็บไฟล์
+      },
+      filename:function(req,file,cb){
+            cb(null,Date.now()+".jpg") // เปลี่ยนชื่อไฟล์ ไม่ให้ชื่อซ้ำกัน
+      }
+})
+// เริ่มต้น upload รูปภาพ ด้วย Multer
+const upload = multer({
+      storage:storage
 })
 
 //  form post  > รับข้อมูลจาก form 
-router.post('/insert',(req,res)=>{
+router.post('/insert',upload.single("image" ),(req,res)=>{
+      console.log(req.file)
       // console.log(req.body.name)
       // console.log(req.body.price)
       // console.log(req.body.image)
       // console.log(req.body.description)
- 
+  
       // บันทึกข้อมูล ลง MongoDB
       let data = new Product({
             name:req.body.name,
             price:req.body.price,
-            image:req.body.image,
+            image:req.file.filename,   // เอาฟังชั่นเปลี่ยนชื่อมาใส่  ในฟิวนี้
             description:req.body.description
       })
       Product.saveProduct(data,(err)=>{
             if(err) console.log(err)  // ถ้า err ให้แสดง err
-            res.redirect('/')  // บันทึกเสร็จให้กลับไปหน้าแรก
+            // res.redirect('/')  // บันทึกเสร็จให้กลับไปหน้าแรก
       })
       // console.log(data)
       // res.render('form')
