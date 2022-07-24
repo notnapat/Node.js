@@ -7,40 +7,6 @@ const router = express.Router()
 const Product = require('../models/products.js')
 
 
-
-
-// เรียกใช้ ejs template
-router.get('/',(req,res)=>{
-      const products = [
-            {name:"โน๊ตบุ๊ค",price:500,image:"images/products/product1.png"},
-            {name:"เสื้อ",price:200,image:"images/products/product2.png"},
-            {name:"หูฟัง",price:200,image:"images/products/product3.png"}
-      ] 
-      res.render('index-obj.ejs',{products:products})
-
-})
-
-// แสดง url ตามพาท
-router.get('/addForm',(req,res)=>{
-      res.render('form')
-
-})
-
-router.get('/manage',(req,res)=>{
-      res.render('manage')
-
-})
-
-router.get('/product',(req,res)=>{
-      res.render('product')
-})
-
-// //  form get
-// router.get('/insert',(req,res)=>{      
-//       console.log(req.query.name)  //  .query แสดงข้อมูลทั้งหมด   , .name แสดงแค่ชื่อ , .price แสดงแค่ราคา  ,  .description  
-//       res.render('form')
-// })
-
 // เรียกใช้ตัวอัพโหลดไฟล์  Multer  
 // อัพโหลดไฟล์ขึ้น Sever && MongoDB   >  myrouter.js + products.js
 const multer = require('multer')
@@ -57,6 +23,49 @@ const storage = multer.diskStorage({
 const upload = multer({
       storage:storage
 })
+
+// ดึงข้อมูล จาก mongodb มาแสดงหน้าเว็บหลังหรือ index.ejs
+router.get('/',(req,res)=>{
+      Product.find().exec((err,doc)=>{
+            res.render('index-obj.ejs',{products:doc})
+      })
+})
+
+// // เรียกใช้ ejs template
+// router.get('/',(req,res)=>{
+//       const products = [
+//             {name:"โน๊ตบุ๊ค",price:500,image:"images/products/product1.png"},
+//             {name:"เสื้อ",price:200,image:"images/products/product2.png"},
+//             {name:"หูฟัง",price:200,image:"images/products/product3.png"}
+//       ] 
+//       res.render('index-obj.ejs',{products:products})
+
+// })
+
+// แสดง url ตามพาท
+router.get('/addForm',(req,res)=>{
+      res.render('form')
+
+})
+
+// ดึงข้อมูลจาก mongodb มาแสดงในหน้าเว็บ แก้ไข  หรือ manage.ejs
+router.get('/manage',(req,res)=>{
+      Product.find().exec((err,doc)=>{
+          res.render('manage',{products:doc})     
+      })
+   })
+
+router.get('/product',(req,res)=>{
+      res.render('product')
+})
+
+// //  form get
+// router.get('/insert',(req,res)=>{      
+//       console.log(req.query.name)  //  .query แสดงข้อมูลทั้งหมด   , .name แสดงแค่ชื่อ , .price แสดงแค่ราคา  ,  .description  
+//       res.render('form')
+// })
+
+
 
 //  form post  > รับข้อมูลจาก form 
 router.post('/insert',upload.single("image" ),(req,res)=>{
@@ -75,7 +84,7 @@ router.post('/insert',upload.single("image" ),(req,res)=>{
       })
       Product.saveProduct(data,(err)=>{
             if(err) console.log(err)  // ถ้า err ให้แสดง err
-            // res.redirect('/')  // บันทึกเสร็จให้กลับไปหน้าแรก
+            res.redirect('/')  // บันทึกเสร็จให้กลับไปหน้าแรก
       })
       // console.log(data)
       // res.render('form')
