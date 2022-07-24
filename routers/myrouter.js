@@ -55,7 +55,7 @@ router.get('/manage',(req,res)=>{
       })
    })
 
-   // ลบข้อมูลใน mongodb  ผ่าน id ที่ดึงมา
+   // ลบข้อมูลใน mongodb  ผ่าน id ที่ดึงมา  > manage.ejs
 router.get('/delete/:id',(req,res)=>{
       // console.log(req.params.id)  // เช็คดูข้อมูลที่ส่งมาจาก mongodb
       Product.findByIdAndDelete(req.params.id,{useFindAndModify:false}).exec(err=>{
@@ -65,9 +65,24 @@ router.get('/delete/:id',(req,res)=>{
            
       })
 
-router.get('/product',(req,res)=>{
-      res.render('product')
+// เปรียบเที่ยบ และสอบถามข้อมูล ไปยัง mongodb + index.ejs + product.ejs
+router.get('/:id',(req,res)=>{
+      const product_id = req.params.id  // เช็ค id ที่รับมา ให้แสดงใน cmd
+      console.log(product_id)
+      Product.findOne({_id:product_id}).exec((err,doc)=>{  // เช็คว่า id มีใน mongodb รึป่าว , exec รันการทำงาน
+            // console.log(doc)
+        res.render('product',{product:doc})    
+      })
+      
 })
+
+// // อัพเดท หรือ แก้ใขข้อมูล ไปยัง mongodb 
+// router.get('/edit',(req,res)=>{
+//       const edit_id = req.body.edit_id  // เช็ค id ที่รับมา ให้แสดงใน cmd
+//       Product.findOne({_id:edit_id}).exec((err,doc)=>{  // เช็คว่า id มีใน mongodb รึป่าว , exec รันการทำงาน
+//       })
+      
+// })
 
 // //  form get
 // router.get('/insert',(req,res)=>{      
