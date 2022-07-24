@@ -55,6 +55,16 @@ router.get('/manage',(req,res)=>{
       })
    })
 
+   // ลบข้อมูลใน mongodb  ผ่าน id ที่ดึงมา
+router.get('/delete/:id',(req,res)=>{
+      // console.log(req.params.id)  // เช็คดูข้อมูลที่ส่งมาจาก mongodb
+      Product.findByIdAndDelete(req.params.id,{useFindAndModify:false}).exec(err=>{
+            if(err) console.log(err)
+             res.redirect('/manage')
+      })
+           
+      })
+
 router.get('/product',(req,res)=>{
       res.render('product')
 })
