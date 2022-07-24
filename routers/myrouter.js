@@ -76,13 +76,15 @@ router.get('/:id',(req,res)=>{
       
 })
 
-// // อัพเดท หรือ แก้ใขข้อมูล ไปยัง mongodb 
-// router.get('/edit',(req,res)=>{
-//       const edit_id = req.body.edit_id  // เช็ค id ที่รับมา ให้แสดงใน cmd
-//       Product.findOne({_id:edit_id}).exec((err,doc)=>{  // เช็คว่า id มีใน mongodb รึป่าว , exec รันการทำงาน
-//       })
+// แก้ใขข้อมูล    + manage.ejs + edit.ejs
+router.post('/edit',(req,res)=>{
+      const edit_id = req.body.edit_id  // เช็ค id ที่รับมา ให้แสดงใน cmd  , edit_id = name in managem.ejs
+      Product.findOne({_id:edit_id}).exec((err,doc)=>{  // เช็คว่า id มีใน mongodb รึป่าว , exec รันการทำงาน
+            //นำข้อมูลเดิมที่ต้องการแก้ไข ไปแสดงในแบบฟอร์ม
+            res.render('edit',{product:doc})
+      })
       
-// })
+})
 
 // //  form get
 // router.get('/insert',(req,res)=>{      
