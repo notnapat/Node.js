@@ -86,6 +86,24 @@ router.post('/edit',(req,res)=>{
       
 })
 
+// อัพเดทข้อมูลที่แก้ไขแล้วลง mongodb +  edit.ejs
+router.post('/update',upload.single("image" ),(req,res)=>{
+    
+      //ข้อมูลใหม่ที่ถูกส่งมาจากฟอร์มแก้ไข
+      let update_id = req.body.update_id
+      let data = {
+            name:req.body.name,
+            price:req.body.price,
+            description:req.body.description
+      }
+     // อัพเดทข้อมูล
+     Product.findByIdAndUpdate(update_id,data,{useFindAndModify:false}).exec(err=>{
+      res.redirect('manage')
+     })
+})
+
+
+
 // //  form get
 // router.get('/insert',(req,res)=>{      
 //       console.log(req.query.name)  //  .query แสดงข้อมูลทั้งหมด   , .name แสดงแค่ชื่อ , .price แสดงแค่ราคา  ,  .description  

@@ -38,12 +38,16 @@ npm install express = ติดตั้ง express
 npm install ejs = ติดตั้ง การใช้ ไฟล์ .ejs
 <%= name %> = <%= ชื่อตัวแปลที่จะนำ ไปแสดง %>
 <%- name %> = <%- ชื่อตัวแปลพร้อมแท็ก html %>
-    
+<% if(พ็อบพาตี้ที่ต้องการเช็ค)  {%>
+	ข้อมูลที่่จะให้ แสดงถ้าถูกต้อง
+<% } %>
+	  
     Mongoose เชื้อมต่อ MongoDB
 npm install mongoose = ติดตั่ง Mongoose ใน cmd vscode
 
 	Multer ตัวอัพโหลดไฟล์ เช่น รูป วีดีโอ
 npm install multer = ติดตั้ง multer
+ 
 
     
     
