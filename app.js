@@ -7,12 +7,13 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const router = require('./routers/myrouter')
+const cookieParser = require('cookie-parser') // เรียกใช้ cookie แต่ต้องติดตั้ง  cookie-parser ก่อน
 
 app.set('views',path.join(__dirname,'views')) // views
 app.set('view engine' ,'ejs')
 
 app.use(express.urlencoded({extended:false})) //หน้าจะทำให้อ่าน Object ได้ มั้ง
-
+app.use(cookieParser()) // นำ cookieparser มาใช้
 
 app.use(router)// ดึงมาจาก ไฟล์ myrouter.js
 app.use(express.static(path.join(__dirname,'public'))) // static

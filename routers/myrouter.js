@@ -42,10 +42,36 @@ router.get('/',(req,res)=>{
 
 // })
 
+// 
 // แสดง url ตามพาท
-router.get('/addForm',(req,res)=>{
-      res.render('form')
+// ก่อนจะเข้าหน้า manage ให้ ล็อกอินก่อน
+router.get('/manage',(req,res)=>{
 
+      if(req.cookies.login){
+            Product.find().exec((err,doc)=>{
+                  res.render('manage',{products:doc})
+            })
+      }else{
+            res.render('admin') // เข้าสู่ระบบ
+      }
+})
+
+// แสดง url ตามพาท
+// ก่อนจะเข้าหน้า form เพิ่มข้อมูลให้ ล็อกอินก่อน
+router.get('/addform',(req,res)=>{
+      if(req.cookies.login){
+            res.render('form')  // บันทักสินค้า
+      }else{
+            res.render('admin') // เข้าสู่ระบบ
+      }
+
+})
+// ออกจากระบบ เคลีย cookie
+router.get('/logout',(req,res)=>{
+      res.clearCookie('username')
+      res.clearCookie('password')
+      res.clearCookie('login')
+      res.redirect('/manage')
 })
 
 // ดึงข้อมูลจาก mongodb มาแสดงในหน้าเว็บ แก้ไข  หรือ manage.ejs
@@ -54,6 +80,29 @@ router.get('/manage',(req,res)=>{
           res.render('manage',{products:doc})     
       })
    })
+
+
+
+
+
+
+// login เช็ค  username พร้อมเก้บ cookie ตั้วเ่วลาจัดเก็บ cookie  + app.js + admin,ejs + 404.ejs + manage.ejs + form.ejs
+ router.post('/login',(req,res)=>{
+      const username = req.body.username
+      const password = req.body.password
+      const timeExpire = 20000 // 10 วินาที
+
+      if(username === "aaa" && password === "111"){
+            // สร้าง cookie
+            res.cookie('username',username,{maxAge:timeExpire})
+            res.cookie('password',password,{maxAge:timeExpire})
+            res.cookie('login',true,{maxAge:timeExpire})   // true = เข้าสู่ระบบ
+            res.redirect('/manage')
+      }else{
+            res.render('404')
+      }
+     
+})  
 
    // ลบข้อมูลใน mongodb  ผ่าน id ที่ดึงมา  > manage.ejs
 router.get('/delete/:id',(req,res)=>{
@@ -134,6 +183,8 @@ router.post('/insert',upload.single("image" ),(req,res)=>{
       // console.log(data)
       // res.render('form')
 })
+
+
 
 //____________________________________________________________________________________________________________________________________
 
