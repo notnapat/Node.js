@@ -51,6 +51,8 @@ npm install multer = ติดตั้ง multer
  	Cookie
 npm install cookie-parser = ติดตั้งการใช้งาน cookie
 
+	Session
+npm install express-session
     
     
     
